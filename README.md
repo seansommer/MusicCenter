@@ -10,6 +10,8 @@ A warm, comfortable home for our music apps. The record-and-note icon, walnut li
 
 The responsive hub, shared header, musician-card and message interfaces, light/dark modes, share artwork, app icons, and install manifest are implemented. Chords & Tabs can be used as a guest immediately after Pages is enabled.
 
+The collection uses square app icons, like Game Center. Chords & Tabs opens in a full-viewport player inside the hub, so the installed Music Center does not leave its app scope or add an outer app toolbar. Use the record icon inside Chords & Tabs to return home. Normal browser tabs can still show their own address bars.
+
 **Both apps are configured for the `music-center-1111` Firebase project.** Accounts, private messages, and the live Master Editor still require Email/Password authentication to be enabled, the supplied database rules to be published, and your account UID to be granted master access. Follow the setup guide below; these console settings are not changed by a GitHub deployment.
 
 ## Launch on GitHub Pages

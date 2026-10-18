@@ -20,5 +20,23 @@
       "type": "image/png",
       "purpose": "any"
     }
+  ],
+  "categories": [
+    "music",
+    "entertainment"
+  ],
+  "description": "A comfortable place to learn, play, and collect your favorite songs.",
+  "shortcuts": [
+    {
+      "name": "Open Chords & Tabs",
+      "url": "./?app=chordstabs",
+      "icons": [
+        {
+          "src": "assets/chords-icon-192.png",
+          "sizes": "192x192",
+          "type": "image/png"
+        }
+      ]
+    }
   ]
 }
