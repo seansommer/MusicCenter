@@ -1,0 +1,19 @@
+{
+  "name": "musiccenter",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test tests/*.test.mjs",
+    "build": "node scripts/build.mjs",
+    "test:rules": "firebase emulators:exec --only database --project demo-music-center \"node tests/rules.integration.mjs\""
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "devDependencies": {
+    "@firebase/rules-unit-testing": "5.0.0",
+    "firebase": "12.18.0",
+    "firebase-tools": "14.15.2"
+  }
+}
