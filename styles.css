@@ -28,3 +28,5 @@ body.in-music-app{overflow:hidden}
 .app-loading{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:15px;background:var(--paper);font-size:13px;color:var(--muted)}
 .app-loading img{border-radius:18px;box-shadow:var(--shadow)}
 @media(max-width:620px){.app-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:18px 10px}.music-app-tile{padding:5px 0}.music-app-icon{width:min(100%,100px);height:auto;aspect-ratio:1;border-radius:23px}.music-app-tile strong{font-size:11px}.music-app-tile>span:last-child{font-size:9px}.collection-caption{font-size:11px}}
+
+.master-tools-link{margin:0 0 18px}.danger-text{color:#a83f32}.danger-button{background:#a83f32;color:white}:root[data-theme=dark] .danger-text{color:#ffb6a8}

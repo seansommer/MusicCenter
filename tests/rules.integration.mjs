@@ -45,5 +45,11 @@ try{
  await pass('Master still cannot read private mailboxes',()=>assertFails(get(ref(master,at('mailboxes/musician-a')))));
  await pass('Stale revision cannot overwrite a new song version',()=>assertFails(set(ref(master,at('songEdits/test-song')),{...edit,updatedBy:'master-sean'})));
  await pass('Next revision is accepted',()=>assertSucceeds(set(ref(master,at('songEdits/test-song')),{...edit,updatedBy:'master-sean',revision:2})));
+ const deletion={...edit,content:JSON.stringify({schemaVersion:1,id:'test-song',title:'Test',artist:'Artist',deleted:true}),updatedBy:'master-sean',revision:3};
+ await pass('Ordinary account cannot delete via a tombstone',()=>assertFails(set(ref(a,at('songEdits/test-song')),{...deletion,updatedBy:'musician-a'})));
+ await pass('Guest cannot delete via a tombstone',()=>assertFails(set(ref(guest,at('songEdits/test-song')),deletion)));
+ await pass('Master can delete using the existing revision-protected schema',()=>assertSucceeds(set(ref(master,at('songEdits/test-song')),deletion)));
+ await pass('A stale edit cannot undo deletion',()=>assertFails(set(ref(master,at('songEdits/test-song')),{...edit,updatedBy:'master-sean',revision:3})));
+ await pass('Master can restore the next revision',()=>assertSucceeds(set(ref(master,at('songEdits/test-song')),{...edit,updatedBy:'master-sean',revision:4})));
  console.log(`Verified ${checked} authorization and data-integrity checks against the Realtime Database emulator.`);
 }finally{await env.cleanup();}

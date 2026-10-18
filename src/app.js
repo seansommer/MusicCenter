@@ -5,9 +5,10 @@ initShell('hub');
 const launcher=$('#hub-launcher'),player=$('#music-app-player');
 let frameTimer=null,returnScroll=0;
 function launchApp(sourceUrl,push=true){
-  const appUrl=new URL('../ChordsTabs/',location.href),source=new URL(sourceUrl,location.href);
+  const source=new URL(sourceUrl,location.href),manager=source.pathname.endsWith('/manage.html')||source.searchParams.get('screen')==='manage';
+  const appUrl=new URL(manager?'../ChordsTabs/manage.html':'../ChordsTabs/',location.href);
   for(const key of ['song','view'])if(source.searchParams.has(key))appUrl.searchParams.set(key,source.searchParams.get(key));
-  if(push){returnScroll=window.scrollY;const url=new URL(location.href);url.search='';url.searchParams.set('app','chordstabs');for(const key of ['song','view'])if(appUrl.searchParams.has(key))url.searchParams.set(key,appUrl.searchParams.get(key));history.pushState({},'',url);}
+  if(push){returnScroll=window.scrollY;const url=new URL(location.href);url.search='';url.searchParams.set('app','chordstabs');if(manager)url.searchParams.set('screen','manage');for(const key of ['song','view'])if(appUrl.searchParams.has(key))url.searchParams.set(key,appUrl.searchParams.get(key));history.pushState({},'',url);}
   clearTimeout(frameTimer);launcher.hidden=true;player.hidden=false;document.body.classList.add('in-music-app');$('#app-loading').hidden=false;$('#open-app-direct').hidden=true;$('#open-app-direct').href=appUrl.href;
   const frame=document.createElement('iframe');frame.title='Chords & Tabs';frame.src=appUrl.href;frame.allow='autoplay; clipboard-write; fullscreen; web-share; encrypted-media; picture-in-picture';frame.referrerPolicy='strict-origin-when-cross-origin';
   frame.addEventListener('load',()=>{clearTimeout(frameTimer);$('#app-loading').hidden=true;});

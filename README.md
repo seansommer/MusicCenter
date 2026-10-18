@@ -64,3 +64,8 @@ It checks real Firebase rules against an isolated demo project, including forged
 The app does not register a service worker in this first version, so published chart corrections are not hidden behind an old offline cache. Home-screen installation is provided by the manifest; online access is required.
 
 Created by Sean.
+
+
+## Master song manager
+
+The master account card includes **Master song manager**, opening `ChordsTabs/manage.html` inside the Music Center player. It supports browsing, adding, editing, deleting, and restoring songs. The manager is hidden from ordinary accounts; Firebase remains the authority for all writes. Deletion/restore uses the current versioned `songEdits` schema, so existing Firebase rules do not need to be republished. `src/song-records.js` is also shared between the two repos.
